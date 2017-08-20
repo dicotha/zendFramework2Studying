@@ -8,7 +8,7 @@ This is my application from a course in alura, in there I do connection with a  
 
 Installation
 ------------
-clone this repository, in root folde call the php Server
+clone this repository, in root folder call the php Server
 
 php -S localhost:8080
 
