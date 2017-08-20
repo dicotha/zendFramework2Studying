@@ -1,5 +1,21 @@
 <?php
 return array(
+    'translator' => array(
+        'locale' => 'pt_BR',
+        'translation_file_patterns' => array(
+            array(
+                'type' => 'gettext',
+                'base_dir' => __DIR__ . '/../language',
+                'pattern' => '%s.mo'
+            ),
+        ),
+    ),
+    'service_manager' => array(
+        'aliases' => array(
+            'translator' => 'MvcTranslator',
+        ),
+    ),
+
 	'router' => array(
 		'routes' => array(
 			'application' => array(
@@ -37,7 +53,8 @@ return array(
 	),
 	'controllers' => array(
         'invokables' => array(
-            'Produtos\Controller\Index' => 'Produtos\Controller\IndexController'
+            'Produtos\Controller\Index' => 'Produtos\Controller\IndexController',
+            'Produtos\Controller\Usuario' => 'Produtos\Controller\UsuarioController'
         ),
     ),
 	'view_manager' => array(
@@ -63,7 +80,7 @@ return array(
         ),
     ),
     'doctrine' => array(
-          'driver' => array(
+      'driver' => array(
             'application_entities' => array(
               'class' =>'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
               'cache' => 'array',
@@ -76,6 +93,18 @@ return array(
                 ),
             ),
         ),
+        'authentication' => array(
+            'orm_default' => array(
+                'object_manager' => 'Doctrine\ORM\EntityManager',
+                'identity_class' => 'Produtos\Entity\Usuario',
+                'identity_property' => 'email',
+                'credential_property' => 'senha',
+                'credentialCallable' => function($user,$senha){
+                    return $user->getSenha() == md5($senha);
+                }
+                
+            )
+        )
     ),
 	
 );

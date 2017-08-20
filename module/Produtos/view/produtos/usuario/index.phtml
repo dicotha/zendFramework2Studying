@@ -1,0 +1,18 @@
+<h1>Login</h1>
+<?php 
+	$url = $this->url('application',['controller'=>'usuario', 'action'=>'login']);
+ ?>
+<form action="<?= $url ?>" method="post">
+	<div class="form-group">
+		<label for="email">Email:</label>
+		<input type="text" name="email" id="email" class="form-control">
+	</div>
+	<div class="form-group">
+		<label for="senha">Senha:</label>
+		<input type="password" name="senha" id="senha" class="form-control">
+	</div>
+	<div class="form-group">
+		<input type="submit" name="Entrar" class="btn btn-info">
+	</div>
+
+</form>

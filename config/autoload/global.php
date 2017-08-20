@@ -12,5 +12,8 @@
  */
 
 return array(
-    // ...
+    'translator' => array(
+    'locale' => 'pt_BR',
+),
+
 );

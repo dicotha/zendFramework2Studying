@@ -3,11 +3,13 @@
 	namespace Produtos\Entity;
 
 	use Doctrine\ORM\Mapping as ORM;
+	use Zend\InputFilter\InputFilterAwareInterface;
+	use Zend\InputFilter\InputFilterInterface;
+	use Zend\InputFilter\InputFilter;
 
 
 	/** @ORM\Entity(repositoryClass="Produtos\Entity\Repository\ProdutosRepository")	*/
-	class Produtos
-	{
+	class Produtos implements InputFilterAwareInterface	{
 		/**
 	    *@ORM\Id
 	    *@ORM\GeneratedValue(strategy="AUTO")
@@ -29,6 +31,12 @@
 		*@ORM\Column(type="string")
 		*/
 		private $descricao;
+		/**
+		*@ORM\ManyToOne(targetEntity="Produtos\Entity\Categoria", inversedBy="produto")
+		*@ORM\JoinColumn(name="categoria_id", referencedColumnName="id", nullable = false)
+		*/
+		private $categoria;
+
 		/*constroi um novo produto CREATE*/
 		public function __construct($nome, $preco, $descricao){
 			$this->nome = $nome;
@@ -36,6 +44,9 @@
 			$this->descricao = $descricao;
 		}
 		/*fim constroi um novo produto READ*/
+
+
+
 		/*pega os  valores*/
 		public function getId(){
 			return $this->id;
@@ -50,7 +61,14 @@
 		public function  getDescri(){
 			return $this->descricao;
 		}
+
+		public function getCategoria(){
+			return $this->categoria;
+		}
 		/*fim pega valores*/
+
+
+
 		/*seta novos valores UPDATE*/
 
 		public function setName($nome){
@@ -62,9 +80,40 @@
 		public function setDescri($descricao){
 			$this->descricao = $descricao;
 		}
+		public function setCategoria(Categoria $categoria){
+			$this->categoria = $categoria;
+		}
 
 		/*fim seta novos valores UPDATE*/
 
+
+
+
+		public function setInputFilter(InputFilterInterface $inputFilter){
+			throw new Exception("Error Processing Request");
+			
+		}
+		public function getInputFilter(){
+			$inputFilter = new InputFilter();
+
+			$inputFilter->add([
+				'name' => 'nome',
+				'required' => true,
+				'validators' => [
+					[
+						'name'=> 'StringLength',
+						'options' => [
+							'min' => 3,
+							'max' => 100,
+							
+						]
+					]
+				]
+
+			]);
+
+			return $inputFilter;
+		}
 
 	}
 	

@@ -10,6 +10,7 @@
 			<th>nome</th>
 			<th>preco</th>
 			<th>descricao</th>
+			<th>Categoria</th>
 			<th>Ações</th>
 		</tr>
 	</thead>
@@ -25,6 +26,9 @@
 						</td>
 						<td>
 							'.$value->getDescri().'
+						</td>
+						<td>
+							'.$value->getCategoria()->getNome().'
 						</td>
 						<td>
 							<a href="'.$this->url('application',['action'=>'remover','id'=>$value->getId()]).'" class="btn btn-danger">Remover</a>
