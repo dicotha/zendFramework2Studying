@@ -1,0 +1,9 @@
+<br>
+<h1>Remoção completa</h1>
+
+<form method="post" action="<?= $this->url('application',['action'=>'remover']);?>">
+	<input type="hidden" value="<?= $id;?>" name="id">
+	<div class="alert alert-danger">Deseja realmente remover esse item ?</div>
+	<input type="submit" value="Sim" class="btn btn-danger" name="">
+	<a href="<?= $this->url('application') ?>" class="btn btn-info">Não</a>
+</form>

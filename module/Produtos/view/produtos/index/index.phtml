@@ -1,0 +1,41 @@
+
+<h1>Produtos</h1>
+
+
+
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>nome</th>
+			<th>preco</th>
+			<th>descricao</th>
+			<th>Ações</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php 
+			foreach ($produtos as $value) {
+				echo '<tr>
+						<td>
+							'.$value->getName().'
+						</td>
+						<td>
+							'.$value->getPrice().'
+						</td>
+						<td>
+							'.$value->getDescri().'
+						</td>
+						<td>
+							<a href="'.$this->url('application',['action'=>'remover','id'=>$value->getId()]).'" class="btn btn-danger">Remover</a>
+							<a href="'.$this->url('application',['action'=>'editar','id'=>$value->getId()]).'" class="btn btn-success">Editar</a>
+						</td>
+					</tr>';
+			}
+		?>
+		
+	</tbody>
+</table>
+<?php 
+	echo $this->PaginationHelper($produtos,$qntPagina,'/produtos');
+ ?>
