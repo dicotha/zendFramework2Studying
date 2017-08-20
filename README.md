@@ -1,77 +1,51 @@
-ZendSkeletonApplication
+ZendFrameWork Alura Project
 =======================
 
 Introduction
 ------------
-This is a simple, skeleton application using the ZF2 MVC layer and module
-systems. This application is meant to be used as a starting place for those
-looking to get their feet wet with ZF2.
+This is my application from a course in alura, in there I do connection with a  mysql data base using a Doctrine, created a module called Produtos and a validation auth.
+
 
 Installation
 ------------
+clone this repository, in root folde call the php Server
 
-Using Composer (recommended)
-----------------------------
-The recommended way to get a working copy of this project is to clone the repository
-and use `composer` to install dependencies using the `create-project` command:
+php -S localhost:8080
 
-    curl -s https://getcomposer.org/installer | php --
-    php composer.phar create-project -sdev --repository-url="https://packages.zendframework.com" zendframework/skeleton-application path/to/install
+The mysql run in localhost, so you don't need login and password, create this db:
 
-Alternately, clone the repository and manually invoke `composer` using the shipped
-`composer.phar`:
+zendtestloja
 
-    cd my/project/dir
-    git clone git://github.com/zendframework/ZendSkeletonApplication.git
-    cd ZendSkeletonApplication
-    php composer.phar self-update
-    php composer.phar install
 
-(The `self-update` directive is to ensure you have an up-to-date `composer.phar`
-available.)
+Open your bash, go to the root folder and run this command:
+./vender/bin/doctrine-module orm:schema-tool: update --force
 
-Another alternative for downloading the project is to grab it via `curl`, and
-then pass it to `tar`:
+If all go well go to your mysql and you'll see the tables in your db
 
-    cd my/project/dir
-    curl -#L https://github.com/zendframework/ZendSkeletonApplication/tarball/master | tar xz --strip-components=1
+In your table suario, create a new user with a password with md5 crypt, below, the commando to do this.
 
-You would then invoke `composer` to install dependencies per the previous
-example.
+INSERT INTO usuario(email,senha) VALUES ('youremail@email.com',MD5(123456);
 
-Using Git submodules
---------------------
-Alternatively, you can install using native git submodules:
+After you do all this things above, you can go for your browser and open this url 'http://localhost:8080'
+the login screen will appear and you can enjoy the app
 
-    git clone git://github.com/zendframework/ZendSkeletonApplication.git --recursive
 
-Web Server Setup
-----------------
 
-### PHP CLI Server
 
-The simplest way to get started if you are using PHP 5.4 or above is to start the internal PHP cli-server in the root directory:
+Thanks 
 
-    php -S 0.0.0.0:8080 -t public/ public/index.php
+Waldir Bertuqui
 
-This will start the cli-server on port 8080, and bind it to all network
-interfaces.
 
-**Note: ** The built-in CLI server is *for development only*.
 
-### Apache Setup
 
-To setup apache, setup a virtual host to point to the public/ directory of the
-project and you should be ready to go! It should look something like below:
 
-    <VirtualHost *:80>
-        ServerName zf2-tutorial.localhost
-        DocumentRoot /path/to/zf2-tutorial/public
-        SetEnv APPLICATION_ENV "development"
-        <Directory /path/to/zf2-tutorial/public>
-            DirectoryIndex index.php
-            AllowOverride All
-            Order allow,deny
-            Allow from all
-        </Directory>
-    </VirtualHost>
+
+
+
+
+
+
+
+
+
