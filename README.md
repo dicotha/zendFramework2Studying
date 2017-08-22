@@ -16,9 +16,31 @@ The mysql run in localhost, so you don't need login and password, create this db
 
 zendtestloja
 
+Create a file in the folder config/autoload/ with the name doctrine.local.php
+Inside of the file, put de code below
+
+
+```sh
+<?php
+return array(
+    'doctrine' => array(
+        'connection' => array(
+            'orm_default' => array(
+                'driverClass' =>'Doctrine\DBAL\Driver\PDOMySql\Driver',
+                'params' => array(
+                    'host'     => 'localhost',
+                    'port'     => '',
+                    'user'     => 'root',
+                    'password' => '',
+                    'dbname'   => 'zendtestloja',
+                )))));
+
+```
+
+
 
 Open your bash, go to the root folder and run this command:
-./vendor/bin/doctrine-module orm:schema-tool: update --force
+./vendor/bin/doctrine-module orm:schema-tool:update --force
 
 If all go well go to your mysql and you'll see the tables in your db
 
