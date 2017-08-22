@@ -9,12 +9,12 @@ This is my application from a course in alura, in there I do connection with a  
 Installation
 ------------
 clone this repository, in root folder call the php Server
-
-php -S localhost:8080
-
+```sh
+ php -S localhost:8080
+```
 The mysql run in localhost, so you don't need login and password, create this db:
 
-zendtestloja
+> zendtestloja
 
 Create a file in the folder config/autoload/ with the name doctrine.local.php
 Inside of the file, put de code below
